@@ -1,0 +1,12 @@
+#!/bin/sh
+
+export PACKAGE=udisks
+export PORTS=$PACKAGE
+export CREATE_EMPTY_DIRS="media"
+export DROP_DIRS=lib/girepository-1.0
+
+repackage -e
+
+returnval=$?
+
+exit $returnval

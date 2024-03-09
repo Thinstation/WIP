@@ -1,0 +1,41 @@
+# Description: firewalling, NAT, and packet mangling for linux
+# URL: https://netfilter.org/projects/nftables/
+# Maintainer: CRUX System Team, core-ports at crux dot nu
+# Depends on: jansson libedit libgmp libnftnl python3
+
+name=nftables
+version=1.0.9
+release=1
+source=(https://www.netfilter.org/pub/nftables/nftables-$version.tar.xz
+	nftables.nft nftables.init)
+
+build() {
+	cd $name-$version
+
+	autoreconf -vfi
+
+	./configure \
+		--prefix=/usr \
+		--sbindir=/usr/bin \
+		--sysconfdir=/usr/share \
+		--with-cli=readline \
+		--with-json \
+		--disable-debug
+	make
+	make DESTDIR=$PKG install
+
+	cd py
+
+	/usr/bin/python3 setup.py build
+	/usr/bin/python3 setup.py install --prefix=/usr \
+		--root=$PKG \
+		--skip-build
+
+	/usr/bin/python3 -m compileall -d / $PKG/usr/lib
+	/usr/bin/python3 -O -m compileall -d / $PKG/usr/lib
+
+	install -D -m 755 $SRC/nftables.init $PKG/etc/rc.d/nftables
+	install -D -m 600 $SRC/nftables.nft $PKG/etc/nftables.nft
+
+	rm -r $PKG/usr/share/doc
+}

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+export PACKAGE=autofs
+export PORTS="autofs libtirpc"
+
+repackage -e
+
+returnval=$?
+
+exit $returnval

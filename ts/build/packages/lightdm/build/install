@@ -1,0 +1,10 @@
+#!/bin/sh
+
+export PACKAGE=lightdm
+export PORTS="$PACKAGE lightdm-gtk-greeter accountsservice"
+repackage -e
+
+sed -i -e 's|/usr/bin|/bin|g' /build/packages/lightdm/lib/systemd/system/*.service
+returnval=$?
+
+exit $returnval

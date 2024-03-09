@@ -1,0 +1,69 @@
+#!/bin/sh
+
+. /etc/thinstation.global
+
+INTERFACE=$1
+ACTION=$2
+
+if [ "$INTERFACE" != "lo" ]; then
+
+	case $ACTION in
+	pre-up)
+		if [ "$HOSTNAME" == "thinstation-linux" ]; then
+			CLIENT_MAC=`cat /sys/class/net/$INTERFACE/address | sed 's/://g'`
+			if [ -n "`echo \"$NET_HOSTNAME\" | sed -n '/\*/p'`" ]; then
+				CLIENT_NAME=`echo "$NET_HOSTNAME" | sed "s/\*/$CLIENT_MAC/"`
+			else
+				CLIENT_NAME=$NET_HOSTNAME
+			fi
+			if [ -e /etc/thinstation.hosts ] ; then
+				clientname=`cat /etc/thinstation.hosts | grep -i $CLIENT_MAC | cut -d" " -f 1`
+				if [ -n "$clientname" ] ; then
+					CLIENT_NAME=$clientname
+				fi
+			fi
+			if [ "$CLIENT_NAME" == "(none)" ]; then
+				unset CLIENT_NAME
+			else
+				hostname $CLIENT_NAME
+			fi
+		fi
+	;;
+	up|dhcp4-change)
+
+		if [ -e /var/log/net/$INTERFACE ]; then
+			. /var/log/net/$INTERFACE
+		fi
+		NETWORKUP=TRUE
+		gw=`echo $IP4_ADDRESS_0 | cut -d/ -f2 | cut -d' ' -f2`
+		ip=`echo $IP4_ADDRESS_0 | cut -d/ -f1`
+
+		sed -i -e "/NET_DEVICE=/d" $TS_RUNTIME
+		echo "NET_DEVICE=$INTERFACE" >> $TS_RUNTIME
+		sed -i -e '/127.0.0.1/d' /etc/hosts
+		echo "127.0.0.1 $CLIENT_NAME localhost" >> /etc/hosts
+	;;
+	down)
+		if [ -e /var/log/net/$INTERFACE ]; then
+			. /var/log/net/$INTERFACE
+		fi
+		NETWORKUP=FALSE
+	;;
+	*)
+		exit
+	;;
+	esac
+
+	echo "DEVTYPE=$DEVTYPE"				> /var/log/net/$INTERFACE
+	echo "CLIENT_NAME=$CLIENT_NAME"			>> /var/log/net/$INTERFACE
+	echo "CLIENT_MAC=$CLIENT_MAC"			>> /var/log/net/$INTERFACE
+	echo "CLIENT_IP=$ip"				>> /var/log/net/$INTERFACE
+	echo "CLIENT_GATEWAY=$gw"			>> /var/log/net/$INTERFACE
+	echo "SUBNET=$DHCP4_NETWORK_NUMBER"		>> /var/log/net/$INTERFACE
+	echo "SERVER_IP=$DHCP4_NEXT_SERVER"		>> /var/log/net/$INTERFACE
+	echo "NETWORKUP=$NETWORKUP"			>> /var/log/net/$INTERFACE
+	echo "NETMASK_SIZE=$DHCP4_SUBNET_MASK"		>> /var/log/net/$INTERFACE
+	echo "DHCP_SERVER_ID=$DHCP4_DHCP_SERVER_IDENTIFIER">> /var/log/net/$INTERFACE
+	echo "NET_USE=$NET_USE"				>> /var/log/net/$INTERFACE
+	echo "NET_DHCP_TIMEOUT=$NET_DHCP_TIMEOUT"	>> /var/log/net/$INTERFACE
+fi

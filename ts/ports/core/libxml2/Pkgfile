@@ -1,0 +1,22 @@
+# Description: XML library version 2
+# URL: http://xmlsoft.org/
+# Maintainer: Juergen Daubert, jue at crux dot nu
+# Depends on: zlib xz
+
+name=libxml2
+version=2.12.5
+release=1
+source=(https://download.gnome.org/sources/libxml2/${version:0:4}/$name-$version.tar.xz)
+
+build() {
+	cd $name-$version
+
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc
+
+	make
+	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/share/{doc,gtk-doc}
+}

@@ -1,0 +1,15 @@
+[Unit]
+Description=Hardware RNG Entropy Gatherer Daemon
+Requires=systemd-udev-settle.service
+After=pkg.service
+
+[Service]
+Type=forking
+EnvironmentFile=/etc/thinstation.env
+ExecStart=/etc/init.d/rngd init
+PIDFile=/run/rngd.pid
+SyslogIdentifier=thinstation
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,19 @@
+# Description: X keyboard configuration database
+# URL: http://www.freedesktop.org/wiki/Software_2fXKeyboardConfig
+# Maintainer: CRUX Xorg Team, xorg-ports at crux dot nu
+# Depends on: xorg-xkbcomp, intltool
+
+name=xkeyboard-config
+version="2.41"
+release=1
+source=(http://xorg.freedesktop.org/releases/individual/data/$name/$name-$version.tar.xz)
+
+build() {
+  ts-meson ${name}-${version} build \
+    -D xkb-base="/usr/share/X11/xkb" \
+    -D compat-rules=true \
+    -D xorg-rules-symlinks=true
+
+  ninja -C build
+  DESTDIR="$PKG" ninja -C build install
+}

@@ -1,0 +1,11 @@
+--2024-02-14 18:23:28--  https://gitlab.archlinux.org/archlinux/packaging/packages/clang/-/raw/main/enable-fstack-protector-strong-by-default.patch?ref_type=heads
+Resolving gitlab.archlinux.org (gitlab.archlinux.org)... 213.133.111.15, 2a01:4f8:222:174c::1
+Connecting to gitlab.archlinux.org (gitlab.archlinux.org)|213.133.111.15|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 3799 (3.7K) [text/plain]
+Saving to: 'enable-fstack-protector-strong-by-default.patch?ref_type=heads'
+
+enable-fstack-protector-strong-by-default.patch?ref_type=heads        0%[                                                                                                                                                                   ]       0  --.-KB/s               enable-fstack-protector-strong-by-default.patch?ref_type=heads      100%[==================================================================================================================================================================>]   3.71K  --.-KB/s    in 0s      
+
+2024-02-14 18:23:29 (53.5 MB/s) - 'enable-fstack-protector-strong-by-default.patch?ref_type=heads' saved [3799/3799]
+

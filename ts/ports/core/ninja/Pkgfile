@@ -1,0 +1,31 @@
+# Description: Small build system with a focus on speed
+# URL: https://ninja-build.org/
+# Maintainer: CRUX System Team, core-ports at crux dot nu
+# Depends on: cmake
+# Optional: bash-completion zsh
+
+name=ninja
+version=1.11.1
+release=1
+source=(https://github.com/$name-build/$name/archive/v$version/$name-v$version.tar.gz)
+
+build() {
+	cmake -S $name-$version -B build -G Ninja \
+		-D CMAKE_INSTALL_PREFIX=/usr \
+		-D CMAKE_BUILD_TYPE=Release \
+		-D CMAKE_C_FLAGS_RELEASE="$CFLAGS" \
+		-D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
+		-Wno-dev
+	cmake --build build
+	DESTDIR=$PKG cmake --install build
+
+#	prt-get isinst bash-completion && \
+#		install -m644 -D $name-$version/misc/bash-completion \
+#		$PKG/usr/share/bash-completion/completions/ninja
+
+#	prt-get isinst zsh && install -m644 -D $name-$version/misc/zsh-completion \
+#		$PKG/usr/share/zsh/site-functions/_ninja
+
+	install -m644 -D $name-$version/misc/ninja.vim \
+		$PKG/usr/share/vim/vimfiles/syntax/ninja.vim
+}

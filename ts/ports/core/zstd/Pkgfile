@@ -1,0 +1,21 @@
+# Description: Real-time compression algorithm with high compression ratios
+# URL: https://facebook.github.io/zstd/
+# Maintainer: CRUX system team, core-ports at crux dot nu
+# Depends on: xz zlib
+
+name=zstd
+version=1.5.5
+release=1
+source=(https://github.com/facebook/zstd/archive/v$version/$name-v$version.tar.gz)
+
+build() {
+	cd $name-$version
+
+	export PREFIX=/usr DESTDIR=$PKG
+
+	make
+	make install
+
+	make -C contrib/pzstd
+	make -C contrib/pzstd install
+}

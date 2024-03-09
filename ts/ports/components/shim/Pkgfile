@@ -1,0 +1,48 @@
+# Maintainer : Daniel Bermond < gmail-com: danielbermond >
+# Contributor: Taylor Smock <vorpalblade77@gmail.com>
+# Contributor: Keshav Amburay <the.ridikulus.rat@gmail.com>
+
+name=shim
+version=15.4
+release=3
+source=(UEFI-CA.cer \
+	BOOTX64.csv \
+	https://github.com/rhboot/shim/releases/download/$version/shim-$version.tar.bz2 \
+	https://github.com/rhboot/shim/commit/4068fd42c891ea6ebdec056f461babc6e4048844.patch \
+	https://github.com/rhboot/shim/commit/822d07ad4f07ef66fe447a130e1027c88d02a394.patch \
+	https://github.com/rhboot/shim/commit/8b59591775a0412863aab9596ab87bdd493a9c1e.patch \
+	)
+
+build() {
+    unset CFLAGS CXXFLAGS
+
+#    git clone --recurse-submodules https://www.github.com/rhboot/shim.git -b shim-$version
+
+    cd shim-$version
+    patch -p1 -i $SRC/4068fd42c891ea6ebdec056f461babc6e4048844.patch # allocate MOK config table as BootServicesData
+    patch -p1 -i $SRC/822d07ad4f07ef66fe447a130e1027c88d02a394.patch # don't force authentication when database is not available.
+    patch -p1 -i $SRC/8b59591775a0412863aab9596ab87bdd493a9c1e.patch # EFI 1.10 for older Macbooks.
+
+    cat $SRC/BOOTX64.csv >> data/sbat.csv
+
+    export VENDOR_CERT_FILE="$SRC/UEFI-CA.cer"
+    export ENABLE_HTTPBOOT='1'
+    export DEFAULT_LOADER='grubx64.efi'
+    export SOURCE_DATE_EPOCH=foo
+
+
+    make
+
+    for efi in mmx64.efi fbx64.efi; do
+	efisign $efi "UEFI Signing"
+    done
+
+    make EFIDIR=ThinStation DESTDIR="$PKG" install
+    make DESTDIR="$PKG" install-as-data
+
+    install -D -m644 COPYRIGHT "${PKG}/usr/share/licenses/${name}/LICENSE"
+
+    rm -rf $PKG/usr/{src,lib/debug}
+
+    sha256sum $PKG/usr/share/shim/$version/x64/shimx64.efi
+}

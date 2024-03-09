@@ -1,0 +1,40 @@
+#!/bin/bash
+
+new_file()
+{
+        if [ -n "`stat -c '%Y' "$1" | grep -v \"$bday\"`" ]; then
+                echo "$1"
+        fi
+}
+
+stamp()
+{
+	touch -c -h -t "$timestamp" "$1"
+}
+
+procs=`nproc`
+timestamp="`date +%Y%m%d`0000.00"
+
+export timestamp
+export procs
+export -f new_file
+export -f stamp
+export scan_dirs="usr lib bin sbin build/packages opt etc share var"
+
+for dir in $scan_dirs; do
+	export IFS=$'\n'
+        find /$dir ! -type d |xargs -P $procs -I {} bash -c 'stamp "$@"' _ {}
+	unset IFS
+done
+
+bday=`stat -c %Y /bin/busybox`
+export bday
+
+$@
+
+for dir in $scan_dirs; do
+	export IFS=$'\n'
+	find /$dir ! -type d |xargs -P $procs -I {} bash -c 'new_file "$@"' _ {}
+	unset IFS
+done
+

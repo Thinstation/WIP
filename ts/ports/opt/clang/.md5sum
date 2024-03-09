@@ -1,0 +1,12 @@
+70053a666251fdcabc466ea4a0275972  clang-16.0.6.src.tar.xz
+e7101c6566262a17d74fb7914ba06ae1  clang-16.0.6.src.tar.xz.sig
+775a93a7b168101f544dbfed23ac4aaa  clang-tools-extra-16.0.6.src.tar.xz
+16dc487eca6017622960d9f80302b9a5  clang-tools-extra-16.0.6.src.tar.xz.sig
+980b7725016f26719c635b85b7b1acd0  clangd-handle-missing-ending-brace.patch
+b7830bb90e376c90a43c2c190a0a5ffa  cmake-16.0.6.src.tar.xz
+5f748e5dff6c50d57b20b32a27ac8ed0  cmake-16.0.6.src.tar.xz.sig
+c666dfe4054c40d8fd3b4f6336faa826  enable-fstack-protector-strong-by-default.patch
+7d986cda69719a35bd5ecb266fcf1f65  llvm-16.0.6.src.tar.xz
+8bc30a5bc2a217e9499ca9bebd627d12  llvm-16.0.6.src.tar.xz.sig
+93f5eae2f0012c7b5abdddda216d6ac0  third-party-16.0.6.src.tar.xz
+9ec17566ca3286cac01c2211b8e80aba  third-party-16.0.6.src.tar.xz.sig

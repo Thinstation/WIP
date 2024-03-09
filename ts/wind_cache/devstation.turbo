@@ -1,0 +1,4 @@
+#8e82b395d3ba765acfaf6f8d6360aaec  .dna
+rm /ts/build/packages/devstation/bin/diff
+rm /ts/build/packages/devstation/bin/find
+

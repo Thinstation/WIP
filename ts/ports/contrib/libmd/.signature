@@ -1,0 +1,5 @@
+untrusted comment: verify with /etc/ports/contrib.pub
+RWSagIOpLGJF38y6ZQLqZL7uQrD5cwcylWM7NpnnChuc5bG9WWWGtvaivx7DSFxmG/kaHp2Nuf8HauhgJjymCVcp4IWn9NJUUgQ=
+SHA256 (Pkgfile) = 6fa3e161de8f613c7fc7d6c6c19032cccc3266ce439bbc40280948f6090ae146
+SHA256 (.footprint) = 4fbf014593e1d502ad735d35d4003ab7ce8ab9b8eb6f2a2a0704a38ee643b576
+SHA256 (libmd-1.1.0.tar.xz) = 1bd6aa42275313af3141c7cf2e5b964e8b1fd488025caf2f971f43b00776b332

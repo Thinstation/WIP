@@ -1,0 +1,35 @@
+#!/bin/bash
+
+kernels()
+{
+	for port in kernel-TS; do
+		if prt-get current $port > /dev/null; then
+			prt-get update -fr -if -im -is $port
+		else
+			prt-get install -fr -if -im -is $port
+		fi
+		prt-get update -uf $port
+		prt-get update -um $port
+		shrink $port
+	done
+}
+
+modules()
+{
+	for port in bbswitch cryptodev-linux macbook12-spi-driver rtl8821ce evdi; do
+        	if prt-get current $port > /dev/null; then
+                	prt-get update -fr -if -im -is $port
+	        else
+        	        prt-get install -fr -if -im -is $port
+	        fi
+	        prt-get update -um $port
+	        prt-get update -uf $port
+		shrink $port
+	done
+}
+
+case $1 in
+	--modules|-m) modules;;
+	--kernels|-k|*) kernels;;
+	--all|-a) kernels; modules;;
+esac

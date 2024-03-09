@@ -1,0 +1,8 @@
+#!/bin/bash
+
+collection=$1
+
+cd /ts/ports/$collection
+for port in `ls --color=never`; do
+	prt-get update -fr -is -im -if $port
+done

@@ -1,0 +1,19 @@
+# Description: inotify-tools is a C library and a set of command-line programs for Linux providing a simple interface to inotify
+# URL:         http://inotify-tools.sourceforge.net/
+# Maintainer:  Thomas Penteker, tek at serverop dot de
+# Packager:    Till Biedermann, tillbiedermann at yahoo dot de
+# Depends on: 
+
+name=inotify-tools
+version=3.20.1
+release=2
+source=(https://github.com/rvoicilas/inotify-tools/archive/$version.tar.gz)
+
+build() {
+    cd $name-$version
+    NOCONFIGURE=1 ./autogen.sh
+    ./configure --prefix=/usr --mandir=/usr/man
+    make
+    make DESTDIR=$PKG install
+    rm -rf $PKG/usr/share
+}

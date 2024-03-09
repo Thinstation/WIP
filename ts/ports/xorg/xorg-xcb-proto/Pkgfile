@@ -1,0 +1,20 @@
+# Description: XCB X protocol descriptions
+# URL: http://xcb.freedesktop.org
+# Maintainer: CRUX Xorg Team, xorg-ports at crux dot nu
+# Depends on: python
+
+name=xorg-xcb-proto
+archname=${name#xorg-}
+archname=${name#xorg-}
+version=1.16.0
+release=1
+source=(https://xorg.freedesktop.org/archive/individual/proto/xcb-proto-$version.tar.xz)
+
+build() {
+	cd xcb-proto-$version
+
+	PYTHON=/usr/bin/python3 ./configure --prefix=/usr
+
+	make
+	make DESTDIR=$PKG install
+}

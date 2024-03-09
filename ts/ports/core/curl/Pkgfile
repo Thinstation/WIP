@@ -1,0 +1,28 @@
+# Description: A tool for transfering files with URL syntax
+# Maintainer: CRUX System Team, core-ports at crux dot nu
+# URL: https://curl.haxx.se
+# Depends on: libnghttp2 openssl zstd
+
+name=curl
+version=8.6.0
+release=1
+source=(https://curl.haxx.se/download/$name-$version.tar.xz)
+
+build() {
+	cd $name-$version
+	./configure \
+		--prefix=/usr \
+		--enable-ipv6 \
+		--enable-threaded-resolver \
+		--with-ca-bundle=/etc/ssl/cert.pem \
+		--with-openssl \
+		--with-nghttp2 \
+		--disable-ldap{,s} \
+		--without-brotli \
+		--without-libidn2 \
+		--without-libpsl \
+		--without-librtmp
+	make
+	make DESTDIR=$PKG install
+	make -C docs/libcurl DESTDIR=$PKG install
+}

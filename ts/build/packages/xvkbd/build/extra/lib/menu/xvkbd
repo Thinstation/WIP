@@ -1,0 +1,1 @@
+package="xvkbd"; icon="preferences-desktop-keyboard-shortcuts"; needs="x11"; title="Onscreen Keyboard"; command="pkg window xvkbd"; menu="Utilities"; nodesktop="true"

@@ -1,0 +1,31 @@
+# Description: Library to create and read several archive formats
+# URL: https://www.libarchive.org/
+# Maintainer: CRUX System Team, core-ports at crux dot nu
+# Depends on: acl bzip2 lzo zstd
+
+name=libarchive
+version=3.7.2
+release=2
+source=(https://github.com/libarchive/libarchive/releases/download/v$version/$name-$version.tar.xz
+	lzma_stream.patch)
+
+build() {
+	patch -Np1 -d $name-$version -i $SRC/lzma_stream.patch
+
+	cmake -S $name-$version -B build -G Ninja \
+		-D CMAKE_INSTALL_PREFIX=/usr \
+		-D CMAKE_BUILD_TYPE=Release \
+		-D CMAKE_C_FLAGS_RELEASE="$CFLAGS" \
+		-D ENABLE_TAR_SHARED=ON \
+		-D ENABLE_ICONV=OFF \
+		-D ENABLE_LIBB2=OFF \
+		-D ENABLE_LIBXML2=OFF \
+		-D ENABLE_NETTLE=OFF \
+		-D ENABLE_TEST=OFF \
+		-D BUILD_TESTING=OFF \
+		-Wno-dev
+	cmake --build build -j ${JOBS:-1}
+	DESTDIR=$PKG cmake --install build
+
+	ln -s $name.so.20 $PKG/usr/lib/$name.so.19
+}

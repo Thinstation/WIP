@@ -1,0 +1,7 @@
+#!/bin/sh
+
+INSTALLDIR=./packages/chrome
+
+rm -rf $INSTALLDIR/opt
+rm $INSTALLDIR/etc/chrome/'Local State'
+rm ./packages/chrome/build/installed

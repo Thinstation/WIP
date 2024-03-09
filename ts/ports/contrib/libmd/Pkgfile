@@ -1,0 +1,15 @@
+# Description: Message Digest functions from BSD systems
+# URL: https://www.hadrons.org/software/libmd/
+# Maintainer: Matt Housh, jaeger at crux dot ninja
+
+name=libmd
+version=1.1.0
+release=1
+source=(https://archive.hadrons.org/software/$name/$name-$version.tar.xz)
+
+build() {
+  cd $name-$version
+  ./configure --prefix=/usr
+  make
+  make DESTDIR=$PKG install
+}

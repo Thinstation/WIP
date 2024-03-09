@@ -1,0 +1,7 @@
+./.git/objects/pack/pack-2c739c82dadb7bb6e5ed7ee59d4c31be2e2df685.pack
+./ts/ports/binary-core/firmware/firmware#git-1.pkg.tar.xz
+./ts/ports/components/noto-fonts/noto-fonts#git-1.pkg.tar.xz
+./ts/ports/contrib/openjdk8/openjdk8#8u222-b10-1.pkg.tar.xz
+./ts/ports/kernel-modules/kernel-TS/kernel-TS#1-1.pkg.tar.xz
+./ts/ports/opt/rust/rust#1.53.0-1.pkg.tar.xz
+./ts/ports/opt/wine_mono/wine_mono#3.7-1.pkg.tar.xz

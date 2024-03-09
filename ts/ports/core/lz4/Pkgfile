@@ -1,0 +1,15 @@
+# Description: A data compression library suitable for data de-/compression in real-time.
+# URL: http://www.oberhumer.com/opensource/lzo/
+# Maintainer: Donald A. Cupp Jr. (don cupp jr at ya hoo dot com)
+
+name=lz4
+version=1.9.4
+release=1
+source=https://github.com/lz4/lz4/releases/download/v$version/lz4-$version.tar.gz
+build() {
+	cd lz4-$version
+
+	make PREFIX=/usr
+	make DESTDIR=$PKG PREFIX=/usr install
+}
+

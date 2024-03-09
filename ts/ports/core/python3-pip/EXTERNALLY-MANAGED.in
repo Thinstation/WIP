@@ -1,0 +1,25 @@
+[externally-managed]
+Error=CRUX discourages installing python packages via pip
+ directly. This practice can lead to unpredictable behaviour
+ while using the official ports system.
+
+ Instead of using pip, try looking for your desired package
+ inside your available repositories with e.g. 'prt-get search
+ MODULENAME'.
+ You might also want to see if a CRUX user published a port for
+ your desired package on the official ports database.
+
+ If it's not available it is advisable to create one yourself and
+ control the package with the ports system.
+ However, if you don't wish to create your own package(s), you can
+ create a virtual environment using '/usr/bin/python3 -m venv
+ path/to/venv'.
+ Then use path/to/venv/bin/python and path/to/venv/bin/pip. Make
+ sure you have python3-virtualenv installed.
+
+ Further information:
+  - CRUX Ports System: https://crux.nu/Main/Handbook3-7#ntoc47
+  - CRUX Ports System FAQ: https://crux.nu/Wiki/FaqPortsSystem
+  - CRUX Port Guidelines: https://crux.nu/Main/PortGuidelines
+  - CRUX Ports DB: https://crux.nu/portdb/
+  - Python Virtual Environments: https://docs.python.org/3/library/venv.html

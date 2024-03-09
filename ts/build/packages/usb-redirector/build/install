@@ -1,0 +1,9 @@
+#!/bin/sh
+
+export PACKAGE=usb-redirector
+export PORTS=usbredir
+repackage -e
+
+returnval=$?
+
+exit $returnval

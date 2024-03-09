@@ -1,0 +1,18 @@
+# Description: A terminal based program for viewing text files
+# URL: https://www.greenwoodsoftware.com/less/
+# Maintainer: CRUX System Team, core-ports at crux dot nu
+# Depends on: libpcre2 ncurses
+
+name=less
+version=643
+release=1
+source=(https://www.greenwoodsoftware.com/less/$name-$version-beta.tar.gz
+	filter)
+
+build() {
+	cd $name-$version
+	./configure --prefix=/usr --with-regex=pcre2
+	make
+	make DESTDIR=$PKG install
+	install -m 755 -D $SRC/filter $PKG/usr/lib/less/filter
+}

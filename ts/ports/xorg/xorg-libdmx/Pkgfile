@@ -1,0 +1,19 @@
+# Description: xorg lib libdmx
+# URL: http://xorg.freedesktop.org
+# Maintainer: CRUX Xorg Team, xorg-ports at crux dot nu
+# Depends on: xorg-libx11, xorg-libxext, xorg-dmxproto
+
+name=xorg-libdmx
+archname=${name#xorg-}
+version=1.1.5
+release=1
+source=(http://xorg.freedesktop.org/releases/individual/lib/libdmx-$version.tar.xz)
+
+build() {
+	cd libdmx-$version
+
+	./configure --prefix=/usr --mandir=/usr/man --disable-static
+
+	make
+	make DESTDIR=$PKG install
+}

@@ -1,0 +1,4 @@
+3c8ae6e32351f38bfa855dc38a3a758a  crux-patch.diff
+85796a21c28bf3ca86dd0c0987da3e7e  makefile
+fd7441f75a501c61a52177e36e90c9c7  start-stop-daemon.c
+9e7fa46ac0c9402f4eefa7b9e7445a91  start-stop-daemon.pod

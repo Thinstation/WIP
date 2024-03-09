@@ -1,0 +1,13 @@
+[Unit]
+Description=Start Splash
+DefaultDependencies=no
+After=pre-udev.service
+
+[Service]
+EnvironmentFile=/etc/thinstation.env
+ExecStart=/etc/init.d/splash start
+SyslogIdentifier=thinstation
+Type=simple
+KillMode=none
+SendSIGKILL=no
+RemainAfterExit=false

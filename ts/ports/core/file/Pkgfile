@@ -1,0 +1,25 @@
+# Description: File type identification utility
+# URL: https://www.darwinsys.com/file/
+# Maintainer: CRUX System Team, core-ports at crux dot nu
+# Depends on: bzip2 zstd
+
+name=file
+version="5.43"
+release=1
+source=(http://www.astron.com/pub/file/$name-$version.tar.gz)
+
+build() {
+#export CFLAGS="$CFLAGS -fPIC"
+#export CXXFLAGS="$CXXFLAGS -fPIC"
+
+	cd file-$version
+	./configure \
+		--prefix=/usr \
+		--enable-fsect-man5 \
+		--enable-static \
+		--enable-shared
+
+	make
+	make DESTDIR=$PKG install
+	rmdir $PKG/usr/share/man/man4
+}

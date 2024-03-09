@@ -1,0 +1,6 @@
+#!/bin/sh
+
+installdir=./packages/https_everywhere
+
+rm -r $installdir/lib/firefox/browser/extensions/*.xpi
+rm $installdir/build/installed

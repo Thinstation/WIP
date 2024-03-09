@@ -1,0 +1,24 @@
+diff -Nru exim-4.97.orig/OS/Makefile-Base exim-4.97/OS/Makefile-Base
+--- exim-4.97.orig/OS/Makefile-Base	2023-11-05 11:02:35.022263083 +0100
++++ exim-4.97/OS/Makefile-Base	2023-11-05 11:03:51.618346653 +0100
+@@ -253,7 +253,7 @@
+         transport-filter.pl convert4r3 convert4r4 \
+         exim_checkaccess \
+         exim_dbmbuild exim_dumpdb exim_fixdb exim_tidydb \
+-	exim_lock exim_msgdate exim_id_update
++	exim_lock exim_msgdate
+ 
+ 
+ # Targets for special-purpose configuration header builders
+diff -Nru exim-4.97.orig/scripts/exim_install exim-4.97/scripts/exim_install
+--- exim-4.97.orig/scripts/exim_install	2023-11-05 11:02:35.018929775 +0100
++++ exim-4.97/scripts/exim_install	2023-11-05 11:07:26.016688640 +0100
+@@ -198,7 +198,7 @@
+   set exim${EXE} ${exim_monitor} exim_dumpdb${EXE} exim_fixdb${EXE} \
+       exim_tidydb${EXE} exinext exiwhat exim_dbmbuild${EXE} exicyclog \
+       exigrep eximstats exipick exiqgrep exiqsumm exim_lock${EXE} \
+-      exim_checkaccess exim_msgdate exim_id_update
++      exim_checkaccess exim_msgdate
+ fi
+ 
+ echo $com ""

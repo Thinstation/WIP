@@ -1,0 +1,22 @@
+# Description: The Linux manpages collection
+# URL: https://man7.org/linux/man-pages/index.html
+# Maintainer: CRUX System Team, core-ports at crux dot nu
+
+name=man-pages
+version=6.05.01
+release=1
+source=(https://www.kernel.org/pub/linux/docs/$name/$name-$version.tar.xz
+	https://www.kernel.org/pub/linux/docs/$name/$name-posix/$name-posix-2017-a.tar.xz)
+
+build() {
+	cd $name-$version
+
+	rm man5/passwd.5
+	make prefix=/usr DESTDIR=$PKG install
+
+	cd $SRC/$name-posix-2017
+	make prefix=/usr DESTDIR=$PKG install
+
+	touch $PKG/usr/share/man/whatis
+	rm $PKG/usr/share/man/man3/{error,fexecve,fnmatch,fprintf,getline,printf,sprintf,strlen,crypt,crypt_r}.3
+}

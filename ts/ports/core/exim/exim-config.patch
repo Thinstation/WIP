@@ -1,0 +1,197 @@
+diff -Nru exim-4.97.orig/src/EDITME exim-4.97/src/EDITME
+--- exim-4.97.orig/src/EDITME	2023-11-05 11:02:35.018929775 +0100
++++ exim-4.97/src/EDITME	2023-11-05 11:09:56.482201757 +0100
+@@ -75,7 +75,7 @@
+ # this would be wanted.
+ ###############################################################################
+ 
+-
++CFLAGS=#CFLAGS#
+ 
+ ###############################################################################
+ #                    THESE ARE THINGS YOU MUST SPECIFY                        #
+@@ -101,7 +101,7 @@
+ # /usr/local/sbin. The installation script will try to create this directory,
+ # and any superior directories, if they do not exist.
+ 
+-BIN_DIRECTORY=/usr/exim/bin
++BIN_DIRECTORY=/usr/sbin
+ 
+ 
+ #------------------------------------------------------------------------------
+@@ -117,7 +117,7 @@
+ # don't exist. It will also install a default runtime configuration if this
+ # file does not exist.
+ 
+-CONFIGURE_FILE=/usr/exim/configure
++CONFIGURE_FILE=/etc/exim/exim.conf
+ 
+ # It is possible to specify a colon-separated list of files for CONFIGURE_FILE.
+ # In this case, Exim will use the first of them that exists when it is run.
+@@ -134,7 +134,7 @@
+ # deliveries. (Local deliveries run as various non-root users, typically as the
+ # owner of a local mailbox.) Specifying these values as root is not supported.
+ 
+-EXIM_USER=
++EXIM_USER=ref:mail
+ 
+ # If you specify EXIM_USER as a name, this is looked up at build time, and the
+ # uid number is built into the binary. However, you can specify that this
+@@ -212,10 +212,10 @@
+ # If you are building with TLS, the library configuration must be done:
+ 
+ # Uncomment this if you are using OpenSSL
+-# USE_OPENSSL=yes
++USE_OPENSSL=yes
+ # Uncomment one of these settings if you are using OpenSSL; pkg-config vs not
+ # and an optional location.
+-# USE_OPENSSL_PC=openssl
++USE_OPENSSL_PC=openssl
+ # TLS_LIBS=-lssl -lcrypto
+ # TLS_LIBS=-L/usr/local/openssl/lib -lssl -lcrypto
+ 
+@@ -351,7 +351,7 @@
+ # MBX, is included only when requested. If you do not know what this is about,
+ # leave these settings commented out.
+ 
+-# SUPPORT_MAILDIR=yes
++SUPPORT_MAILDIR=yes
+ # SUPPORT_MAILSTORE=yes
+ # SUPPORT_MBX=yes
+ 
+@@ -411,8 +411,8 @@
+ LOOKUP_LSEARCH=yes
+ LOOKUP_DNSDB=yes
+ 
+-# LOOKUP_CDB=yes
+-# LOOKUP_DSEARCH=yes
++LOOKUP_CDB=yes
++LOOKUP_DSEARCH=yes
+ # LOOKUP_IBASE=yes
+ # LOOKUP_JSON=yes
+ # LOOKUP_LDAP=yes
+@@ -785,7 +785,7 @@
+ # included in the Exim binary. You will then need to set up the run time
+ # configuration to make use of the mechanism(s) selected.
+ 
+-# AUTH_CRAM_MD5=yes
++AUTH_CRAM_MD5=yes
+ # AUTH_CYRUS_SASL=yes
+ # AUTH_DOVECOT=yes
+ # AUTH_EXTERNAL=yes
+@@ -794,7 +794,7 @@
+ # AUTH_HEIMDAL_GSSAPI=yes
+ # AUTH_HEIMDAL_GSSAPI_PC=heimdal-gssapi
+ # AUTH_HEIMDAL_GSSAPI_PC=heimdal-gssapi heimdal-krb5
+-# AUTH_PLAINTEXT=yes
++AUTH_PLAINTEXT=yes
+ # AUTH_SPA=yes
+ # AUTH_TLS=yes
+ 
+@@ -932,7 +932,7 @@
+ # %s. This will be replaced by one of the strings "main", "panic", or "reject"
+ # to form the final file names. Some installations may want something like this:
+ 
+-# LOG_FILE_PATH=/var/log/exim_%slog
++LOG_FILE_PATH=/var/log/exim/exim_%slog
+ 
+ # which results in files with names /var/log/exim_mainlog, etc. The directory
+ # in which the log files are placed must exist; Exim does not try to create
+@@ -981,7 +981,7 @@
+ # files. Both the name of the command and the suffix that it adds to files
+ # need to be defined here. See also the EXICYCLOG_MAX configuration.
+ 
+-COMPRESS_COMMAND=/usr/bin/gzip
++COMPRESS_COMMAND=/bin/gzip
+ COMPRESS_SUFFIX=gz
+ 
+ 
+@@ -996,7 +996,7 @@
+ # ZCAT_COMMAND=zcat
+ #
+ # Or specify the full pathname:
+-ZCAT_COMMAND=/usr/bin/zcat
++ZCAT_COMMAND=/bin/zcat
+ 
+ #------------------------------------------------------------------------------
+ # Compiling in support for embedded Perl: If you want to be able to
+@@ -1147,7 +1147,7 @@
+ #
+ # USE_TCP_WRAPPERS=yes
+ # CFLAGS=-O -I/usr/local/include
+-# EXTRALIBS_EXIM=-L/usr/local/lib -lwrap
++# EXTRALIBS_EXIM=-lwrap
+ #
+ # but of course there may need to be other things in CFLAGS and EXTRALIBS_EXIM
+ # as well.
+@@ -1180,7 +1180,7 @@
+ # aliases). The following setting can be changed to specify a different
+ # location for the system alias file.
+ 
+-SYSTEM_ALIASES_FILE=/etc/aliases
++SYSTEM_ALIASES_FILE=/etc/exim/aliases
+ 
+ 
+ #------------------------------------------------------------------------------
+@@ -1216,7 +1216,7 @@
+ #------------------------------------------------------------------------------
+ # Uncomment this setting to include IPv6 support.
+ 
+-# HAVE_IPV6=yes
++HAVE_IPV6=yes
+ 
+ ###############################################################################
+ #              THINGS YOU ALMOST NEVER NEED TO MENTION                        #
+@@ -1237,13 +1237,13 @@
+ # haven't got Perl, Exim will still build and run; you just won't be able to
+ # use those utilities.
+ 
+-# CHOWN_COMMAND=/usr/bin/chown
+-# CHGRP_COMMAND=/usr/bin/chgrp
+-# CHMOD_COMMAND=/usr/bin/chmod
+-# MV_COMMAND=/bin/mv
+-# RM_COMMAND=/bin/rm
+-# TOUCH_COMMAND=/usr/bin/touch
+-# PERL_COMMAND=/usr/bin/perl
++CHOWN_COMMAND=/bin/chown
++CHGRP_COMMAND=/bin/chgrp
++CHMOD_COMMAND=/bin/chmod
++MV_COMMAND=/bin/mv
++RM_COMMAND=/bin/rm
++TOUCH_COMMAND=/bin/touch
++PERL_COMMAND=/usr/bin/perl
+ 
+ 
+ #------------------------------------------------------------------------------
+@@ -1445,7 +1445,7 @@
+ # (process id) to a file so that it can easily be identified. The path of the
+ # file can be specified here. Some installations may want something like this:
+ 
+-# PID_FILE_PATH=/var/lock/exim.pid
++PID_FILE_PATH=/run/exim.pid
+ 
+ # If PID_FILE_PATH is not defined, Exim writes a file in its spool directory
+ # using the name "exim-daemon.pid".
+diff -Nru exim-4.97.orig/src/configure.default exim-4.97/src/configure.default
+--- exim-4.97.orig/src/configure.default	2023-11-05 11:02:35.018929775 +0100
++++ exim-4.97/src/configure.default	2023-11-05 11:09:56.482201757 +0100
+@@ -67,7 +67,7 @@
+ # +local_domains, +relay_to_domains, and +relay_from_hosts, respectively. They
+ # are all colon-separated lists:
+ 
+-domainlist local_domains = @
++domainlist local_domains = @ : localhost
+ domainlist relay_to_domains =
+ hostlist   relay_from_hosts = localhost
+ # (We rely upon hostname resolution working for localhost, because the default
+@@ -165,8 +165,8 @@
+ # need the first setting, or in separate files, in which case you need both
+ # options.
+ 
+-# tls_certificate = /etc/ssl/exim.crt
+-# tls_privatekey = /etc/ssl/exim.pem
++tls_certificate = /etc/ssl/certs/exim.crt
++tls_privatekey = /etc/ssl/keys/exim.key
+ 
+ # For OpenSSL, prefer EC- over RSA-authenticated ciphers
+ .ifdef _HAVE_OPENSSL

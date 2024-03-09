@@ -1,0 +1,24 @@
+# Description: Mesa 3D demos
+# URL: http://www.mesa3d.org
+# Maintainer: CRUX Xorg Team, xorg-ports at crux dot nu
+# Depends on: glew glu
+
+name=mesa-demos
+version="9.0.0"
+release=1
+source=(https://mesa.freedesktop.org/archive/demos/mesa-demos-$version.tar.xz)
+
+build() {
+
+  ts-meson mesa-demos-$version build \
+    -D gles1=disabled \
+    -D with-system-data-files=true
+
+  meson compile -C build
+
+  DESTDIR="$PKG" meson install -C build
+
+  # rename linktest to avoid fileconflict with haskell-tidal-link - FS#75919
+  mv "$PKG"/usr/bin/linktest "$PKG"/usr/bin/linktest-mesa
+
+}

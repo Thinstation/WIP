@@ -1,0 +1,11 @@
+9af72a5d6caaa56c96f6659ac1117bb8  compat-32.pub
+f3e52c883d5a712e06e41e5e788bef9e  compat-32.rsync.inactive
+804bb419e539a70ad80e4c03df3c3411  contrib.pub
+d39f6279b5e125edb9f402b0e4d1865b  contrib.rsync.inactive
+b8dd0aad383810cad920d6548cd1cb56  core.pub
+bceca3aa28a0ee00f14e5634251a8322  core.rsync
+0d1f1fde50a9bd743d9cac6b235f038c  opt.pub
+441330fe7eb6970873d287b0d38f83f6  opt.rsync
+902e3ddb9b4930975c7edb5c3c749c8c  ports-1.6.tar.gz
+69927e5d0ae5dc3455faeaac916c4db2  xorg.pub
+d57279f5bd8b1b705b7be4f6866c9ced  xorg.rsync

@@ -1,0 +1,17 @@
+# Description: Generic PCI access library
+# URL: http://xorg.freedesktop.org
+# Maintainer: CRUX Xorg Team, xorg-ports at crux dot nu
+
+name=xorg-libpciaccess
+archname=${name#xorg-}
+version=0.18
+release=1
+source=(http://xorg.freedesktop.org/releases/individual/lib/libpciaccess-$version.tar.xz)
+
+
+build() {
+  mkdir build
+  ts-meson libpciaccess-$version build
+  ninja -C build
+  DESTDIR="$PKG" ninja -C build install
+}

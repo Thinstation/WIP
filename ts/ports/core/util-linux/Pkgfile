@@ -1,0 +1,33 @@
+# Description: Miscellaneous system utilities
+# URL: https://github.com/karelzak/util-linux
+# Maintainer: CRUX System Team, core-ports at crux dot nu
+# Depends on: bzip2 eudev file readline xz
+
+name=util-linux
+version=2.39.3
+release=1
+source=(https://www.kernel.org/pub/linux/utils/$name/v${version:0:4}/$name-$version.tar.xz)
+
+build() {
+	cd $name-$version
+
+	./configure \
+		--prefix=/usr \
+		--enable-{write,kill} \
+		 \
+		--disable-asciidoc \
+		--disable-{login,su,sulogin,nologin,runuser,raw} \
+		--disable-chfn-chsh \
+		--without-python
+
+	make
+	make DESTDIR=$PKG install
+
+	install -d $PKG/{etc,var/lib/libuuid}
+	touch $PKG/etc/adjtime
+
+	prt-get isinst bash-completion || rm -r $PKG/usr/share/bash-completion
+	rm -r $PKG/usr/share/doc
+	rm $PKG/sbin/{mkfs.bfs,mkfs.minix,fsck.minix}
+	rm $PKG/usr/share/man/man8/{fsck.minix,mkfs.bfs,mkfs.minix}.8
+}

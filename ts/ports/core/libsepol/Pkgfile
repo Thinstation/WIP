@@ -1,0 +1,20 @@
+# Maintainer: Nicolas Iooss (nicolas <dot> iooss <at> m4x <dot> org)
+# Contributor: Timothée Ravier <tim@siosm.fr>
+# Contributor: Nicky726 (Nicky726 <at> gmail <dot> com)
+# Contributor: Sergej Pupykin (pupykin <dot> s+arch <at> gmail <dot> com)
+#
+# This PKGBUILD is maintained on https://github.com/archlinuxhardened/selinux.
+# If you want to help keep it up to date, please open a Pull Request there.
+
+name=libsepol
+version=3.6
+release=1
+source=("https://github.com/SELinuxProject/selinux/releases/download/${version}/${name}-${version}.tar.gz"{,.asc})
+
+build() {
+  cd "${name}-${version}"
+
+  export CFLAGS="${CFLAGS} -fno-semantic-interposition"
+  make
+  make DESTDIR="${PKG}" SHLIBDIR=/usr/lib install
+}

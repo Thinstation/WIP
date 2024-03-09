@@ -1,0 +1,16 @@
+# Description: System Utilities Based on Sysfs
+# URL: https://github.com/linux-ras/sysfsutils
+# Maintainer: CRUX System Team, core-ports at crux dot nu
+
+name=sysfsutils
+version=2.1.1
+release=1
+source=(https://github.com/linux-ras/sysfsutils/archive/v$version/$name-$version.tar.gz)
+
+build() {
+	cd $name-$version
+	./autogen
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

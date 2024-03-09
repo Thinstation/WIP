@@ -1,0 +1,10 @@
+README for libbsd
+
+Due to the unusual layout of this package's libraries and headers it may be
+required to set various build environment variables to allow other software
+to discover libbsd, for example (alter as needed):
+
+CFLAGS="${CFLAGS} -I/usr/opt/libbsd/include"
+LDFLAGS="${LDFLAGS" -L/usr/opt/libbsd/lib"
+LD_LIBRARY_PATH="/usr/oprt/libbsd/lib"
+PKG_CONFIG_PATH="/usr/opt/libbsd/lib/pkgconfig"

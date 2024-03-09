@@ -1,0 +1,25 @@
+# Maintainer: Frederik Schwan <freswa at archlinux dot org>
+# Contributor: Andrew Sun  <adsun701 at gmail dot com>
+# Contributor: Kritias     <theodoridisgr at gmail dot com>
+# Contributor: sudokode    <sudokode at gmail dot com>
+# Contributor: Allan McRae <allan at archlinux dot org>
+
+name=libisl
+version=0.26
+project=isl
+release=1
+source=("https://libisl.sourceforge.io/isl-${version}.tar.xz")
+
+build() {
+  cd "${SRC}"/${name#lib}-${version}
+  ./configure --prefix=/usr
+  make
+  make check || true
+
+  make DESTDIR="${PKG}" install
+
+  install -dm755 "${PKG}"/usr/share/gdb/auto-load/usr/lib/
+  mv "${PKG}"/usr/lib/libisl.so.*-gdb.py "${PKG}"/usr/share/gdb/auto-load/usr/lib/
+
+  install -Dm644 LICENSE "${PKG}"/usr/share/licenses/${name}/LICENSE
+}

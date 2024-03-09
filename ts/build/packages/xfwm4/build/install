@@ -1,0 +1,48 @@
+#!/bin/sh
+
+export PACKAGE=xfwm4
+export PORTS="	exo \
+		garcon \
+		xfce4-notifyd \
+		xorg-xinput \
+		xkeyboard-config \
+		libnotify \
+		libwnck \
+		libxfce4ui \
+		libxfce4util \
+		startup-notification \
+		xdg-user-dirs \
+		libglade \
+		xfce4 \
+		xfce4-panel \
+		xfce4-session \
+		xfwm4-themes \
+		xfce4-settings \
+		xfconf \
+		xfdesktop \
+		xfwm4 \
+		xorg-iceauth \
+		xorg-xrdb"
+
+export DROP_DIRS="	lib/xfce4/backdrops \
+			lib/girepository-1.0 \
+			lib/xfce4/xfwm4 \
+			lib/xfce4/dev-tools \
+			lib/backgrounds \
+			lib/locale \
+			lib/themes/Default/balou"
+
+export DROP_FILES="	xfce4-about.desktop \
+			google-chrome.desktop \
+			firefox.desktop \
+			xfce4-file-manager.desktop \
+			xfce4-mail-reader.desktop \
+			xfce4-terminal-emulator.desktop \
+			xfce4-web-browser.desktop"
+
+repackage -e
+
+returnval=$?
+
+exit $returnval
+

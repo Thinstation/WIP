@@ -1,0 +1,33 @@
+#!/bin/sh
+
+export PACKAGE=systemd
+export PORTS="$PACKAGE"
+export DROP_FILES="	etc.conf \
+			systemd-growfs \
+			systemd-makefs \
+			systemd-fsck \
+			shutdown"
+
+export DROP_DIRS="	lib/zsh \
+			lib/systemd/boot/efi \
+			lib/doc \
+			lib/factory \
+			lib/systemd/system-generators \
+			etc/systemd/system/sysinit.target.wants"
+
+repackage -e
+returnval=$?
+
+mkdir -p ./packages/$PACKAGE/sbin
+for i in runlevel reboot poweroff halt telinit; do
+	ln -sf ../bin/systemctl ./packages/$PACKAGE/sbin/$i
+	let returnval=returnval+$?
+done
+for link in init sbin/init ; do
+	ln -sf /lib/systemd/systemd ./packages/$PACKAGE/$link
+	let returnval=returnval+$?
+done
+
+ln -sf libudev.so.1 ./packages/$PACKAGE/lib/libudev.so.0
+
+exit $returnval

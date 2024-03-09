@@ -1,0 +1,9 @@
+#!/bin/sh
+
+export PACKAGE=pidgin
+export PORTS="pidgin libmeanwhile"
+repackage -e
+
+returnval=$?
+
+exit $returnval

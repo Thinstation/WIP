@@ -1,0 +1,11 @@
+--2024-02-17 18:10:22--  https://gitlab.archlinux.org/archlinux/packaging/packages/xf86-video-nouveau/-/raw/main/xorg-server-21.1.diff?ref_type=heads
+Resolving gitlab.archlinux.org (gitlab.archlinux.org)... 213.133.111.15, 2a01:4f8:222:174c::1
+Connecting to gitlab.archlinux.org (gitlab.archlinux.org)|213.133.111.15|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1743 (1.7K) [text/plain]
+Saving to: 'xorg-server-21.1.diff?ref_type=heads'
+
+xorg-server-21.1.diff?ref_type=heads                                                              0%[                                                                                                                                                                                                                                                      ]       0  --.-KB/s               xorg-server-21.1.diff?ref_type=heads                                                            100%[=====================================================================================================================================================================================================================================================>]   1.70K  --.-KB/s    in 0s      
+
+2024-02-17 18:10:23 (2.25 GB/s) - 'xorg-server-21.1.diff?ref_type=heads' saved [1743/1743]
+

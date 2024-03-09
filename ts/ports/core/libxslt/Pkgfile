@@ -1,0 +1,26 @@
+# Description: XSL Transformations library
+# URL: https://gitlab.gnome.org/GNOME/libxslt/-/wikis/home
+# Maintainer: Tim Biermann, tbier at posteo dot de
+# Depends on: libxml2 python3-setuptools
+# Optional: libgcrypt
+
+name=libxslt
+version=1.1.39
+release=1
+source=(https://download.gnome.org/sources/libxslt/${version:0:3}/libxslt-$version.tar.xz)
+
+build() {
+  cd $name-$version
+
+  prt-get isinst libgcrypt || PKGMK_LIBXSLT+=' --without-crypto'
+
+  ./configure $PKGMK_LIBXSLT \
+    --prefix=/usr
+
+  sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+
+  make
+  make DESTDIR=$PKG install
+
+  rm -r $PKG/usr/share/{gtk-,}doc
+}

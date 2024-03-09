@@ -1,0 +1,16 @@
+# Description: libnftnl is a userspace library providing a low-level netlink programming interface (API) to the in-kernel nf_tables subsystem
+# URL: https://netfilter.org/projects/libnftnl/
+# Maintainer: CRUX System Team, core-ports at crux dot nu
+# Depends on: libmnl
+
+name=libnftnl
+version=1.2.6
+release=1
+source=(https://www.netfilter.org/pub/libnftnl/libnftnl-$version.tar.xz)
+
+build() {
+	cd $name-$version
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

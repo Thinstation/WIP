@@ -1,0 +1,35 @@
+# Description: The Linux System V Init
+# URL: https://savannah.nongnu.org/projects/sysvinit/
+# Maintainer: CRUX System Team, core-ports at crux dot nu
+
+name=sysvinit
+version=3.08
+release=1
+source=(https://github.com/slicer69/sysvinit/releases/download/$version/$name-$version.tar.xz)
+
+build() {
+	cd $name-$version
+
+	find man -type d -name '??' -exec rm -r {} +
+
+	make
+	make ROOT=$PKG install
+
+	# Provided by util-linux
+	rm $PKG/usr/bin/{last,lastb,mesg,utmpdump,wall}
+	rm $PKG/usr/share/man/man1/{last,lastb,mesg,utmpdump,wall}.1
+
+	# Provided by procps
+	rm $PKG/bin/pidof
+	rm $PKG/usr/share/man/man8/pidof.8
+
+	# Provided by e2fsprogs
+	rm $PKG/sbin/logsave
+
+	rm $PKG/usr/share/man/man8/{logsave,halt,poweroff,reboot,runlevel,shutdown,telinit}.8
+
+	install -d $PKG/var/log
+	touch $PKG/var/log/wtmp
+	touch $PKG/var/log/btmp
+	chmod 0600 $PKG/var/log/btmp
+}

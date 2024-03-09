@@ -1,0 +1,22 @@
+# Description: Provides useful functions found on BSD systems
+# URL: https://libbsd.freedesktop.org/
+# Maintainer: Matt Housh, jaeger at crux dot ninja
+# Depends on: libmd
+
+name=libbsd
+version=0.11.8
+release=1
+source=(https://libbsd.freedesktop.org/releases/$name-$version.tar.xz \
+  $name.conf)
+
+build() {
+  cd $name-$version
+  autoreconf -vfi
+  CFLAGS+=' -ffat-lto-objects' \
+  ./configure --prefix=/usr \
+    --mandir=/usr/share/man
+
+  make
+  make install DESTDIR=$PKG
+  install -Dm0644 $SRC/$name.conf $PKG/etc/ld.so.conf.d/$name.conf
+}

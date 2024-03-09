@@ -1,0 +1,21 @@
+# $Id$
+# Maintainer: Ionut Biru <ibiru@archlinux.org>
+# Contributor: Gerardo Exequiel Pozzi <vmlinuz386@yahoo.com.ar>
+
+name=libcap-ng
+version=0.8.4
+release=1
+source=(http://people.redhat.com/sgrubb/$name/$name-$version.tar.gz)
+
+build() {
+  cd $name-$version
+  autoreconf -fiv
+  ./configure --prefix=/usr \
+		--enable-static=no \
+		--with-python3 \
+		--without-python
+
+  make
+  make check
+  make DESTDIR=$PKG install
+}

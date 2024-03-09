@@ -1,0 +1,10 @@
+#! /bin/sh
+
+. `dirname $0`/common
+
+if ! pkg_initialized $PACKAGE; then
+	nscd
+	pkg_set_init_flag $PACKAGE
+fi
+
+exit 0

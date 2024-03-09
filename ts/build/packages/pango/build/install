@@ -1,0 +1,11 @@
+#!/bin/sh
+
+export PACKAGE=pango
+export PORTS=$PACKAGE
+export DROP_FILES="pango-querymodules pango-view"
+export DROP_DIRS="lib/installed-tests libexec/installed-tests lib/girepository-1.0"
+repackage -e
+
+returnval=$?
+
+exit $returnval

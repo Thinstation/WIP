@@ -1,0 +1,19 @@
+# Description: Simple database API for samba
+# URL: http://tevent.samba.org/
+# Maintainer: Stefan Metzmacher <metze@samba.org>
+# Depends on: python
+
+name=tevent
+version=0.10.2
+release=1
+source=(https://www.samba.org/ftp/$name/$name-$version.tar.gz)
+
+build() {
+	cd $name-$version
+#	sed -i 's/conf\.check_python_headers()/conf.check_python_headers(features="pyext")/' buildtools/wafsamba/samba_python.py
+
+	./configure --prefix=/usr --mandir=/usr/man --bundled-libraries=NONE --builtin-libraries=replace
+
+	make
+	make install DESTDIR=$PKG
+}

@@ -1,0 +1,24 @@
+# Description: JSON implementation in C
+# URL:         http://oss.metaparadigm.com/json-c/
+# Maintainer:  Juergen Daubert, jue at crux dot nu
+
+name=json-c
+version=0.17-20230812
+release=1
+source=(https://github.com/json-c/json-c/archive/refs/tags/json-c-$version.tar.gz)
+
+build() {
+local cmake_options=(
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX=/usr
+    -DCMAKE_INSTALL_LIBDIR=/usr/lib
+    -DBUILD_STATIC_LIBS=OFF
+    -DENABLE_THREADING=ON
+    -DENABLE_RDRAND=OFF
+  )
+  cmake -S json-c-$name-$version -B build -G Ninja "${cmake_options[@]}"
+  cmake --build build
+  DESTDIR="$PKG" cmake --install build
+  install -Dt "$PKG/usr/share/licenses/$name" -m644 json-c-$name-$version/COPYING
+
+}

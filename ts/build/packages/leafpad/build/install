@@ -1,0 +1,9 @@
+#!/bin/sh
+
+export PACKAGE=leafpad
+export PORTS=leafpad
+repackage -e
+
+returnval=$?
+
+exit $returnval
