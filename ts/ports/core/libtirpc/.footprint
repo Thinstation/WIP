@@ -1,7 +1,7 @@
-drwxr-xr-x	root/root	etc/
--rw-r--r--	root/root	etc/bindresvport.blacklist
--rw-r--r--	root/root	etc/netconfig
 drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/etc/
+-rw-r--r--	root/root	usr/etc/bindresvport.blacklist
+-rw-r--r--	root/root	usr/etc/netconfig
 drwxr-xr-x	root/root	usr/include/
 drwxr-xr-x	root/root	usr/include/tirpc/
 -rw-r--r--	root/root	usr/include/tirpc/netconfig.h

@@ -1,6 +1,6 @@
 #!/bin/sh
 
 getent group mysql || /usr/sbin/groupadd -g 46 mysql
-getent passwd mysql || /usr/sbin/useradd -g mysql -u 46 -d /var/lib/mysql -s /bin/false mysql
+getent passwd mysql || /usr/sbin/useradd -g mysql -u 46 -d /var/lib/mysql -s /bin/false mysql 2>/dev/null
 /usr/bin/passwd -l mysql
 

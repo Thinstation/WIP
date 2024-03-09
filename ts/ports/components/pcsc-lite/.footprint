@@ -37,3 +37,8 @@ drwxr-xr-x	root/root	usr/share/
 drwxr-xr-x	root/root	usr/share/doc/
 drwxr-xr-x	root/root	usr/share/doc/pcsc-lite/
 -rw-r--r--	root/root	usr/share/doc/pcsc-lite/README.polkit
+-rw-r--r--	root/root	usr/share/doc/pcsc-lite/install_spy.sh
+-rw-r--r--	root/root	usr/share/doc/pcsc-lite/uninstall_spy.sh
+drwxr-xr-x	root/root	usr/share/polkit-1/
+drwxr-xr-x	root/root	usr/share/polkit-1/actions/
+-rw-r--r--	root/root	usr/share/polkit-1/actions/org.debian.pcsc-lite.policy

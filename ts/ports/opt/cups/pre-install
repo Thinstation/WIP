@@ -4,7 +4,7 @@
 #getent group lp || /usr/sbin/groupadd -g 7 lp
 
 # check for lp user or add one
-getent passwd lp || /usr/sbin/useradd -g lp -u 7 -d /var/spool/lp -s /bin/nologin lp
+getent passwd lp || /usr/sbin/useradd -g lp -u 7 -d /var/spool/lp -s /bin/nologin lp 2>/dev/null
 
 # lock the account
 /usr/bin/passwd -l lp

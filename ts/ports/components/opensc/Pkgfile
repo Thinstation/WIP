@@ -4,7 +4,7 @@
 # Contributor: kevku <kevku@msn.com>
 
 name=opensc
-version=0.21.0
+version=0.25.0
 release=2
 source=("https://github.com/OpenSC/OpenSC/releases/download/$version/opensc-$version.tar.gz"
 	opensc-skey.patch
@@ -13,8 +13,8 @@ source=("https://github.com/OpenSC/OpenSC/releases/download/$version/opensc-$ver
 
 build() {
   cd $name-$version
-  patch -Np1 < ../opensc-conf.patch
-  patch -Np1 < ../opensc-skey.patch
+#  patch -Np1 < ../opensc-conf.patch
+#  patch -Np1 < ../opensc-skey.patch
   _sheetdir=(/usr/share/xml/docbook/xsl-stylesheets-*)
   ./bootstrap
   ./configure \
@@ -22,7 +22,7 @@ build() {
     --sysconfdir=/etc \
     --with-completiondir=/usr/share/bash-completion/completions \
     --enable-man \
-    --enable-doc \
+    --disable-doc \
     --enable-readline \
     --enable-openssl \
     --enable-pcsc \

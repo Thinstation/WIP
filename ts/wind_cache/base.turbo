@@ -1,10 +1,10 @@
-#b40601289edf047350a98e756820271f  .dna
+#73da6cc6c308f14a7a8de444339ee014  .dna
 rm /ts/build/packages/base/bin/busybox
 rm /ts/build/packages/base/bin/ps
 rm /ts/build/packages/base/bin/getent
 rm /ts/build/packages/base/bin/vmtouch
 rm /ts/build/packages/base/bin/dd
-rm /ts/build/packages/base/sbin/lspci
+rm /ts/build/packages/base/bin/lspci
 rm /ts/build/packages/base/sbin/v86d
 rm /ts/build/packages/base/sbin/agetty
 rm /ts/build/packages/base/lib/libgcc_s.so.1
@@ -20,7 +20,6 @@ rm /ts/build/packages/base/lib/security/pam_unix.so
 rm /ts/build/packages/base/lib/security/pam_permit.so
 rm /ts/build/packages/base/lib/security/pam_xauth.so
 rm /ts/build/packages/base/lib/security/pam_shells.so
-rm /ts/build/packages/base/lib/security/pam_tally.so
 rm /ts/build/packages/base/lib/security/pam_securetty.so
 rm /ts/build/packages/base/lib/security/pam_warn.so
 rm /ts/build/packages/base/lib/security/pam_access.so

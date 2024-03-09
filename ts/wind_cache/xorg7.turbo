@@ -1,4 +1,4 @@
-#82b58c6668dddf10c2f34de2f8fd8f7f  .dna
+#58b4e0f7d507f160bc366fc9bf101baa  .dna
 rm /ts/build/packages/xorg7/lib/xorg/protocol.txt
 rm /ts/build/packages/xorg7/lib/xorg/modules/extensions/libglx.so
 rm /ts/build/packages/xorg7/lib/xorg/modules/libshadowfb.so
@@ -13,7 +13,6 @@ rm /ts/build/packages/xorg7/lib/udev/rules.d/69-xorg-vmmouse.rules
 rm /ts/build/packages/xorg7/lib/xorg/modules/input/vmmouse_drv.so
 rm /ts/build/packages/xorg7/lib/xorg/modules/input/synaptics_drv.so
 rm /ts/build/packages/xorg7/lib/xorg/modules/input/evdev_drv.so
-rm /ts/build/packages/xorg7/lib/xorg/modules/input/kbd_drv.so
 rm /ts/build/packages/xorg7/lib/xorg/modules/input/void_drv.so
 rm /ts/build/packages/xorg7/lib/xorg/modules/input/mouse_drv.so
 rm /ts/build/packages/xorg7/lib/X11/locale/locale.dir

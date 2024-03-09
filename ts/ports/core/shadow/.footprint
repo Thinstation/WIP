@@ -50,7 +50,11 @@ drwxr-xr-x	root/root	usr/sbin/
 -rwxr-xr-x	root/root	usr/sbin/groupmems
 -rwxr-xr-x	root/root	usr/sbin/groupmod
 -rwxr-xr-x	root/root	usr/sbin/grpck
+-rwxr-xr-x	root/root	usr/sbin/grpconv
+-rwxr-xr-x	root/root	usr/sbin/grpunconv
 -rwxr-xr-x	root/root	usr/sbin/pwck
+-rwxr-xr-x	root/root	usr/sbin/pwconv
+-rwxr-xr-x	root/root	usr/sbin/pwunconv
 -rwxr-xr-x	root/root	usr/sbin/useradd
 -rwxr-xr-x	root/root	usr/sbin/userdel
 -rwxr-xr-x	root/root	usr/sbin/usermod
@@ -452,8 +456,12 @@ drwxr-xr-x	root/root	usr/share/man/man8/
 -rw-r--r--	root/root	usr/share/man/man8/groupmems.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/groupmod.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/grpck.8.gz
+-rw-r--r--	root/root	usr/share/man/man8/grpconv.8.gz
+-rw-r--r--	root/root	usr/share/man/man8/grpunconv.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/nologin.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/pwck.8.gz
+-rw-r--r--	root/root	usr/share/man/man8/pwconv.8.gz
+-rw-r--r--	root/root	usr/share/man/man8/pwunconv.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/useradd.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/userdel.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/usermod.8.gz

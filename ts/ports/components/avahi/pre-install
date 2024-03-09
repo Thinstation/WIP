@@ -4,7 +4,7 @@
 getent group avahi || /usr/sbin/groupadd -g 70 avahi
 
 # check for avahi user or add one
-getent passwd avahi || /usr/sbin/useradd -g avahi -u 70 -d /usr/var/run/avahi -s /bin/false -c "Avahi User" avahi
+getent passwd avahi || /usr/sbin/useradd -g avahi -u 70 -d /usr/var/run/avahi -s /bin/false -c "Avahi User" avahi 2>/dev/null
 
 # lock the account
 /usr/bin/passwd -l avahi
