@@ -104,7 +104,7 @@ order_command()
 xterm_wrapper()
 {
 	if [ -e /etc/console/$PACKAGE ]	; then
-		if [ "`basename $XTERM_CMD`" == "xfce4-terminal" ]; then
+		if [ "`echo \"$XTERM_CMD\" |awk '{print $1}'`" == "xfce4-terminal" ]; then
 			arg="--disable-server -x"
 		else
 			arg="-e"

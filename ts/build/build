@@ -285,7 +285,7 @@ lib_dependencies()
 				let procs=( procs * 2 )
 			fi
 			cat liblist.final |sort -u|sort -R | \
-			xargs -n 1 -P $procs -I {} bash -c 'calculate_lib_dependencies "$@"' _ {}
+			xargs -P $procs -I {} bash -c 'calculate_lib_dependencies "$@"' _ {}
 			rm liblist.final
 			if [ -e liblist.added ]; then
 				mv liblist.added liblist.final
@@ -1292,7 +1292,7 @@ for KERNVER in $KERNVERS; do
 		export -f pre_copy copy_module allfirm make_caps copy_firmware
 		export ts_allfirmware KERNVER
 		find /lib/modules/$KERNVER -name \*.ko -printf '%f\n' | \
-		xargs -n 1 -P $procs -I {} bash -c 'pre_copy "$@"' _ {}
+		xargs -P $procs -I {} bash -c 'pre_copy "$@"' _ {}
 		rm /tmp/blacklist.modules
 	fi
 done
@@ -1857,7 +1857,7 @@ filesystem_fixups()
 			export -f compress_module
 			export ts_modcmd
 			find ./tmp-tree/lib/modules -name \*.ko | \
-			 xargs -n 1 -P $procs -I {} bash -c 'compress_module "$@"' _ {}
+			 xargs -P $procs -I {} bash -c 'compress_module "$@"' _ {}
 		fi
 		for KERNVER in $KERNVERS; do
 			depmod -b ./tmp-tree $KERNVER 2>/dev/null
